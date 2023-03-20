@@ -6,7 +6,7 @@
 
 #include "G4RunManager.hh"
 
-#include "g4root.hh"
+#include "G4AnalysisManager.hh"
 #include "G4Event.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
@@ -21,7 +21,7 @@ void GeEventAction::BeginOfEventAction( const G4Event*)
 	G4int evtID = G4RunManager::GetRunManager()->
     GetCurrentEvent()->GetEventID();
 
-	if (evtID % 100000 == 0)
+	if (evtID % 10000 == 0)
 	{
 		G4cout << "\n---> Begin of Event: " << evtID << G4endl;
 	}
@@ -31,10 +31,10 @@ void GeEventAction::BeginOfEventAction( const G4Event*)
 void GeEventAction::EndOfEventAction( const G4Event*)
 {
 
-    G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+    //G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
-    G4int eventNumber = G4RunManager::GetRunManager()->
-                                              GetCurrentEvent()->GetEventID();
+    //G4int eventNumber = G4RunManager::GetRunManager()->
+      //                                        GetCurrentEvent()->GetEventID();
 }
 
 GeEventAction::~GeEventAction(){}

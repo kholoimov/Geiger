@@ -19,10 +19,13 @@ using namespace std;
 GeDetectorConstruction::GeDetectorConstruction() : G4VUserDetectorConstruction()
 { 
    fMessenger = new G4GenericMessenger(this, "/detector/", "Detector Construiction");
-   auto& setWallThickCmd = fMessenger->DeclareMethod("setWallThick", &GeDetectorConstruction:: SetWallThick, "Set Detector Wall Thick");
-   setWallThickCmd.SetUnit("mm");
+ //  auto& setWallThickCmd = fMessenger->DeclareMethod("setWallThick", &GeDetectorConstruction:: SetWallThick, "Set Detector Wall Thick");
+ // setWallThickCmd.SetUnit("mm");
 
-   detWallThick = 0.0625 * mm;
+ //  auto& setPosCmd = fMessenger->DeclareMethod("setPosition", &GeDetectorConstruction:: SetStopPosition, "Should be + 0.5 cm from source");
+ //  setPosCmd.SetUnit("mm");
+   detWallThick = 0.14 * mm;
+   stopPosition = 55 * mm;
    G4cout << detWallThick << G4endl;
    DefineMaterials();
 
@@ -40,15 +43,20 @@ void GeDetectorConstruction::DefineMaterials()
    world_mat = nist->FindOrBuildMaterial("G4_AIR");
    gas_mat = nist->FindOrBuildMaterial("G4_Ar");
    tube_mat = nist->FindOrBuildMaterial("G4_STAINLESS-STEEL");
+   frame_mat = nist->FindOrBuildMaterial("G4_Al");
 }
 
 G4VPhysicalVolume *GeDetectorConstruction::Construct()
 {
    G4double worldSize = 40 * cm;
-   G4double detLength = 400. * mm;
-   G4double detInnerRad = 11 * mm;
+   G4double detLength = 150. * mm;
+   G4double detInnerRad = 10 * mm;
    // detWallThick = 0.0625 * mm; // 50 mg/cm^2 from the web
-   G4double anodeDia = 0.5 * mm;
+   G4double anodeDia = 0.75 * mm;
+   G4double blockThick = 21 * mm;
+   G4double frameRad = 20 * mm; 
+   G4double frameThick = 1 * mm;
+   G4double frameLenght = 200 * mm;
 
    worldSol = new G4Box("World", worldSize, worldSize, worldSize);
    worldLog = new G4LogicalVolume(worldSol, world_mat, "World");
@@ -59,6 +67,10 @@ G4VPhysicalVolume *GeDetectorConstruction::Construct()
                                                     0,
                                                     false,
                                                     0);
+
+   stopSol = new G4Box("Stop", worldSize, detWallThick, worldSize);
+   stopLog = new G4LogicalVolume(stopSol, world_mat, "Stop");
+ //  stopPhys = new G4PVPlacement(0, G4ThreeVector(0, 5.5*cm, 0), stopLog, "Stop", worldLog, false,0);
 
    detTubeSol = new G4Tubs("geigerTube", detInnerRad, detInnerRad + detWallThick,
                                    detLength / 2., 0, 360 * deg);
@@ -91,6 +103,16 @@ G4VPhysicalVolume *GeDetectorConstruction::Construct()
                                                         false,
                                                         0);
 
+   blockSol  = new G4Tubs("block", 0 * mm, detInnerRad + detWallThick, blockThick/2,0, 360* deg);
+   blockLog = new G4LogicalVolume(blockSol, tube_mat, "block");
+   G4double dy = detLength/2 + blockThick / 2;
+   blockPhys1 = new G4PVPlacement(0, G4ThreeVector(0,0,dy), blockLog, "block",worldLog, false,0);
+   blockPhys2 = new G4PVPlacement(0, G4ThreeVector(0,0,-dy), blockLog, "block",worldLog, false,0);
+   
+   frameSol = new G4Tubs("frameTube", frameRad, frameRad + frameThick, frameLenght, 0, 360* deg);
+   frameLog = new G4LogicalVolume(frameSol, frame_mat,"frameTube");
+   //framePhys = new G4PVPlacement(0,G4ThreeVector(), frameLog, "frameTube", worldLog, false,0);
+
    return worldPhys;
 }
 
@@ -102,3 +124,7 @@ void GeDetectorConstruction::SetWallThick(G4double newValue)
 
 }
 
+void GeDetectorConstruction::SetStopPosition(G4double Position)
+{
+   stopPosition = Position * mm;
+}

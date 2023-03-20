@@ -67,10 +67,14 @@
 /vis/geometry/set/visibility gas 0 false
 
 /vis/set/touchable World 0 geigerTube 0
-/vis/touchable/set/colour 0.447059 0.623529 0.811765 .7
+/vis/touchable/set/colour 0.54 0.54 0.54 .7
 
 /vis/set/touchable World 0 gas 0 anodeTube 0
 /vis/touchable/set/colour 0.937255 0.160784 0.160784 .7
+
+/vis/set/touchable World 0 block 0
+/vis/touchable/set/colour 0.255 0.255 0.255 .7
+
 
 # Re-establish auto refreshing and verbosity:
 /vis/viewer/set/autoRefresh true

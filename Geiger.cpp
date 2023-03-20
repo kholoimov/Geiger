@@ -7,6 +7,9 @@
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
 
+#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "GeDetectorConstruction.hh"
 #include "GeActionInitialization.hh"
 #include "GePhysicsList.hh"
@@ -17,7 +20,8 @@ int main(int argc, char** argv)
 
 	G4int nThreads = 5;
 
-  	G4long myseed = 345354;
+    srand((unsigned)time( NULL ));
+  	G4long myseed = rand();
 
 
 	G4UIExecutive* ui = nullptr;

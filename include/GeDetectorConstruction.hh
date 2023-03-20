@@ -30,18 +30,19 @@ class GeDetectorConstruction : public G4VUserDetectorConstruction
    public:
       virtual G4VPhysicalVolume* Construct();
       void SetWallThick(G4double WallThick);
+      void SetStopPosition (G4double Position);
 
    private:
       void DefineMaterials();
 
-      G4Box *worldSol;
-      G4Tubs *detTubeSol, *gasSol, *anodeTubeSol;
-      G4LogicalVolume *worldLog, *gasLog, *anodeTubeLog, *detTubeLog;
-      G4VPhysicalVolume *worldPhys, *detTubePhys, *gasPhys, *anodeTubePhys;
+      G4Box *worldSol, *stopSol;
+      G4Tubs *detTubeSol, *gasSol, *anodeTubeSol, *blockSol, *frameSol;
+      G4LogicalVolume *worldLog, *gasLog, *anodeTubeLog, *detTubeLog, *blockLog, *frameLog, *stopLog;
+      G4VPhysicalVolume *worldPhys, *detTubePhys, *gasPhys, *anodeTubePhys, *blockPhys1, *blockPhys2, *framePhys, *stopPhys;
 
-      G4double detWallThick;
+      G4double detWallThick, stopPosition;
 
-      G4Material *world_mat, *gas_mat, *tube_mat;
+      G4Material *world_mat, *gas_mat, *tube_mat, *frame_mat;
 
       G4GenericMessenger *fMessenger;
 
