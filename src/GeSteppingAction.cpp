@@ -212,7 +212,7 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
 */
         analysisManager->FillNtupleDColumn(4,0, x/mm);
         analysisManager->AddNtupleRow(4);
-        track->SetTrackStatus(fStopAndKill);
+ //       track->SetTrackStatus(fStopAndKill);
 
     }
  /*   
