@@ -9,7 +9,8 @@
 #include "G4Run.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
-#include "G4AnalysisManager.hh"
+//#include "G4AnalysisManager.hh"
+#include "g4root.hh"
 #include "Randomize.hh"
 #include "G4HCofThisEvent.hh"
 
@@ -30,7 +31,7 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
      // Create analysis manager
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
     analysisManager->SetNtupleMerging(true);
-    analysisManager->SetDefaultFileType("root");
+    //analysisManager->SetDefaultFileType("root");
     //analysisManager->SetFileName("geiger137.root");
 
     analysisManager->CreateNtuple("CIGE","CIGE");
