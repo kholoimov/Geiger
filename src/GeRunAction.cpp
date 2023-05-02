@@ -36,8 +36,8 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
 
     analysisManager->CreateNtuple("CIGE","CIGE");
     analysisManager->CreateNtupleDColumn("x");
-    analysisManager->FinishNtuple(0);
-    /*
+    //analysisManager->FinishNtuple(0);
+    
     analysisManager->CreateNtupleDColumn("y");
     analysisManager->CreateNtupleDColumn("z");
     analysisManager->CreateNtupleDColumn("rho");
@@ -47,7 +47,7 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
     analysisManager->CreateNtupleDColumn("Parent");
     analysisManager->CreateNtupleDColumn("TrackID");
     analysisManager->FinishNtuple(0);
-    */
+    
 
     analysisManager->CreateNtuple("AIGE","AIGE");
     analysisManager->CreateNtupleDColumn("x");
@@ -88,8 +88,8 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
 */
     analysisManager->CreateNtuple("WICE","WICE");
     analysisManager->CreateNtupleDColumn("x");
-    analysisManager->FinishNtuple(4);
- /*   
+ //   analysisManager->FinishNtuple(4);
+   
     analysisManager->CreateNtupleDColumn("y");
     analysisManager->CreateNtupleDColumn("z");
     analysisManager->CreateNtupleDColumn("rho");
@@ -97,7 +97,7 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
     analysisManager->CreateNtupleDColumn("u");
     analysisManager->CreateNtupleDColumn("E");
     analysisManager->CreateNtupleDColumn("l");
-    */
+   
 /*
     analysisManager->CreateNtuple("GasIntoCathodeGamma","GasIntoCathodeGamma");
     analysisManager->CreateNtupleDColumn("x");
