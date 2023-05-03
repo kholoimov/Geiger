@@ -87,13 +87,14 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
     // Electrons that are born in cathode and go into the gas volume
     if(prephysvolname == "geigerTube"  && postphysvolname == "gas" && ParticleName == "e-" ) //
     {
-        G4double x, y, z, rho, phi, u, E;
+        G4double x, y, z, rho, phi, u, E, l;
         x = aStep->GetPostStepPoint()->GetPosition().getX();
         y = aStep->GetPostStepPoint()->GetPosition().getY();
         z = aStep->GetPostStepPoint()->GetPosition().getZ();
         rho = sqrt(x*x + y*y);
         phi = aStep->GetPostStepPoint()->GetPosition().getPhi();
         u = 11.*phi*mm;
+        l = track->GetTrackLength();
         E = track->GetKineticEnergy();
         analysisManager->FillNtupleDColumn(0,0, x/mm);
         analysisManager->FillNtupleDColumn(0,1, y/mm);
@@ -102,8 +103,10 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
         analysisManager->FillNtupleDColumn(0,4, phi/deg);
         analysisManager->FillNtupleDColumn(0,5, u/mm);
         analysisManager->FillNtupleDColumn(0,6, E/keV);
-        analysisManager->FillNtupleDColumn(0,7, parentid);
-        analysisManager->FillNtupleDColumn(0,8, trackid);
+        analysisManager->FillNtupleDColumn(0,7, l/mm);
+        analysisManager->FillNtupleDColumn(0,8, parentid);
+        analysisManager->FillNtupleDColumn(0,9, trackid);
+        analysisManager->FillNtupleDColumn(0,10, eventNumber);
         analysisManager->AddNtupleRow(0);
         track->SetTrackStatus(fStopAndKill);
     }
@@ -199,6 +202,7 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
         E = track->GetKineticEnergy();
         l = track->GetTrackLength();
 
+        analysisManager->FillNtupleDColumn(4,0, x/mm);
         analysisManager->FillNtupleDColumn(4,1, y/mm);
         analysisManager->FillNtupleDColumn(4,2, z/mm);
         analysisManager->FillNtupleDColumn(4,3, rho/mm);
@@ -206,7 +210,10 @@ void GeSteppingAction::UserSteppingAction(const G4Step* aStep)
         analysisManager->FillNtupleDColumn(4,5, u/mm);
         analysisManager->FillNtupleDColumn(4,6, E/keV);
         analysisManager->FillNtupleDColumn(4,7, l/mm);
-        analysisManager->FillNtupleDColumn(4,0, x/mm);
+        analysisManager->FillNtupleDColumn(4,8, parentid);
+        analysisManager->FillNtupleDColumn(4,9, trackid);
+        analysisManager->FillNtupleDColumn(4,10, eventNumber);
+
         analysisManager->AddNtupleRow(4);
  //       track->SetTrackStatus(fStopAndKill);
 

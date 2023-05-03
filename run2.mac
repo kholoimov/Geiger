@@ -1,0 +1,21 @@
+/analysis/setFileName geigerCs137.root
+#
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+# 
+#
+#/gps/particle gamma
+#/gps/energy 661.7 keV
+#/gps/direction 0 -1 0
+#/gps/position 0 5 0 cm
+
+/gps/particle ion
+#/gps/ion 27 60 # Co-60
+/gps/ion 55 137 # Cs-137
+/gps/energy 0 keV
+/gps/position 0 5 0 cm
+
+#
+/run/beamOn 1000000

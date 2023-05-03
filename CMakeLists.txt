@@ -30,6 +30,7 @@ target_link_libraries(Geiger ${Geant4_LIBRARIES})
 set(Geiger_SCRIPTS
   init_vis.mac
   run1.mac
+  run2.mac
   vis.mac
   )
 
