@@ -9,7 +9,8 @@
 #include "G4Run.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
-#include "G4AnalysisManager.hh"
+//#include "G4AnalysisManager.hh"
+#include "g4root.hh"
 #include "Randomize.hh"
 #include "G4HCofThisEvent.hh"
 
@@ -30,23 +31,25 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
      // Create analysis manager
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
     analysisManager->SetNtupleMerging(true);
-    analysisManager->SetDefaultFileType("root");
+    //analysisManager->SetDefaultFileType("root");
     //analysisManager->SetFileName("geiger137.root");
 
     analysisManager->CreateNtuple("CIGE","CIGE");
     analysisManager->CreateNtupleDColumn("x");
-    analysisManager->FinishNtuple(0);
-    /*
+    //analysisManager->FinishNtuple(0);
+    
     analysisManager->CreateNtupleDColumn("y");
     analysisManager->CreateNtupleDColumn("z");
     analysisManager->CreateNtupleDColumn("rho");
     analysisManager->CreateNtupleDColumn("phi");
     analysisManager->CreateNtupleDColumn("u");
     analysisManager->CreateNtupleDColumn("E");
+    analysisManager->CreateNtupleDColumn("l");
     analysisManager->CreateNtupleDColumn("Parent");
     analysisManager->CreateNtupleDColumn("TrackID");
+    analysisManager->CreateNtupleDColumn("EventNumber");
     analysisManager->FinishNtuple(0);
-    */
+    
 
     analysisManager->CreateNtuple("AIGE","AIGE");
     analysisManager->CreateNtupleDColumn("x");
@@ -87,8 +90,7 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
 */
     analysisManager->CreateNtuple("WICE","WICE");
     analysisManager->CreateNtupleDColumn("x");
-    analysisManager->FinishNtuple(4);
- /*   
+ //   analysisManager->FinishNtuple(4);
     analysisManager->CreateNtupleDColumn("y");
     analysisManager->CreateNtupleDColumn("z");
     analysisManager->CreateNtupleDColumn("rho");
@@ -96,7 +98,11 @@ GeRunAction::GeRunAction() : G4UserRunAction(), fTimer(0)
     analysisManager->CreateNtupleDColumn("u");
     analysisManager->CreateNtupleDColumn("E");
     analysisManager->CreateNtupleDColumn("l");
-    */
+    analysisManager->CreateNtupleDColumn("Parent");
+    analysisManager->CreateNtupleDColumn("TrackID");
+    analysisManager->CreateNtupleDColumn("EventNumber");
+    analysisManager->FinishNtuple(4);
+   
 /*
     analysisManager->CreateNtuple("GasIntoCathodeGamma","GasIntoCathodeGamma");
     analysisManager->CreateNtupleDColumn("x");
