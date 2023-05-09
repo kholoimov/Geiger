@@ -24,7 +24,7 @@ GeDetectorConstruction::GeDetectorConstruction() : G4VUserDetectorConstruction()
 
  //  auto& setPosCmd = fMessenger->DeclareMethod("setPosition", &GeDetectorConstruction:: SetStopPosition, "Should be + 0.5 cm from source");
  //  setPosCmd.SetUnit("mm");
-   detWallThick = 0.14 * mm;
+   detWallThick = 0.1 * mm;
    stopPosition = 55 * mm;
    G4cout << detWallThick << G4endl;
    DefineMaterials();
