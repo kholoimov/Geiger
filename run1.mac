@@ -4,7 +4,10 @@
 /run/verbose 0
 /event/verbose 0
 /tracking/verbose 0
-# 
+#
+/detector/setWallThick 0.12 mm
+#
+/run/reinitializeGeometry
 #
 #/gps/particle gamma
 #/gps/energy 661.7 keV

@@ -19,8 +19,8 @@ using namespace std;
 GeDetectorConstruction::GeDetectorConstruction() : G4VUserDetectorConstruction()
 { 
    fMessenger = new G4GenericMessenger(this, "/detector/", "Detector Construiction");
- //  auto& setWallThickCmd = fMessenger->DeclareMethod("setWallThick", &GeDetectorConstruction:: SetWallThick, "Set Detector Wall Thick");
- // setWallThickCmd.SetUnit("mm");
+   auto& setWallThickCmd = fMessenger->DeclareMethod("setWallThick", &GeDetectorConstruction:: SetWallThick, "Set Detector Wall Thick");
+   setWallThickCmd.SetUnit("mm");
 
  //  auto& setPosCmd = fMessenger->DeclareMethod("setPosition", &GeDetectorConstruction:: SetStopPosition, "Should be + 0.5 cm from source");
  //  setPosCmd.SetUnit("mm");
